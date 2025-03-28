@@ -1,0 +1,22 @@
+.home {
+    display: grid;
+}
+
+.posts-grid-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background: greenyellow; */
+    width: fit-content;
+    height: 300px;
+    padding: 10px;
+}
