@@ -1,55 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Home.css'
 
-const Loading =({loading, error})=> {
-  if (loading) {
-    return <div className='loading'>Loading...</div>
+
+const Home = ({data, loading, error, onNavigate}) => {
+
+
+
+  const handleClick=(id)=>{
+    onNavigate(id)
   }
-  if (error) {
-    return <div className='error'>{error}</div>
-  }
-  return null
+
+  
+const Loading =()=> {
+  return <div className='loading'>Loading...</div>
 }
 
-const Home = () => {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-
-  useEffect(() => {
-
-    const fetchData =()=>{
-      setLoading(true)
-      fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then((res)=>{
-        if (!res.ok) {
-          throw new Error('Page or Server Error')
-        }
-        return res.json()
-      })
-      .then((data)=>{
-        setData(data)
-      })
-      
-      .catch((error)=>{
-        setError(error.message)
-      })
-      .finally(()=>{
-        setLoading(false)
-      })
-    }
-
-    fetchData()
-  }, [])
+const ErrorPage=({error})=>{
+  return <div className='error'>{error}</div>
+}
   
 
   return (
     <div className='home'>
-      <Loading error={error} loading={loading}/>
+      {loading && <Loading/>}
+      {error && <ErrorPage error={error}/>}
       <div className='posts-grid-container'>
         {data.map((post)=>(
-          <div key={post.id} className='post'>
+          <div key={post.id} className='post' onClick={()=>handleClick(post.id)}>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
           </div>
