@@ -1,10 +1,11 @@
 import React from 'react'
 import './Home.css'
+import { useData } from '../../App'
 
 
-const Home = ({data, loading, error, onNavigate}) => {
+const Home = () => {
 
-
+  const {data, loading, error, onNavigate} = useData()
 
   const handleClick=(id)=>{
     onNavigate(id)

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext} from 'react';
 import './pages/Home'
 import './App.css';
 import Home from './pages/Home';
@@ -6,12 +6,16 @@ import {Routes, Route} from 'react-router-dom';
 import Header from './components/Navbar/Header';
 import PageDetails from './pages/PageDetails';
 import { useNavigate } from 'react-router-dom'
+import Comments from './pages/Comments';
 
 
 //Set up global state for Auth
-// const AuthContext = createContext()
 
+export const DataContext = createContext()
 
+export const useData =()=> {
+  return useContext(DataContext)
+}
 
 
 
@@ -36,7 +40,9 @@ function App() {
       })
       .then((data)=>{
         setData(data)
+        setError(null)
       })
+
       
       .catch((error)=>{
         setError(error.message)
@@ -55,14 +61,21 @@ function App() {
     navigate(`/${id}`)
   }
 
+  const contextValue = {data, loading, error, onNavigate}
+
   return (
-    <div className='App'>
-     <Header/>
-     <Routes>
-        <Route path='/' element={<Home data={data} error={error} loading={loading} onNavigate={onNavigate}/>} />
-        <Route path='/:id' element={<PageDetails data={data} error={error} loading={loading} />} />
+    <DataContext.Provider value={contextValue}>
+       <div className='App'>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/:id' element={<PageDetails data={data} error={error} loading={loading} />}>
+          <Route path='comments' element={<Comments />}/>
+        </Route>
       </Routes>
     </div>
+    </DataContext.Provider>
+   
   );
 }
 

@@ -1,5 +1,6 @@
 .home {
     display: grid;
+    margin-inline: 5rem;
 }
 
 .posts-grid-container {
@@ -20,9 +21,10 @@
     height: 300px;
     padding: 10px;
     cursor: pointer;
-    scale: (0);
+    scale: 1;
+    transition: all 0.3s ease-in-out;
 }
 
 .post:hover {
-    scale: 1;
+    scale: 1.02;
 }

@@ -1,19 +1,23 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
+import { useData } from '../../App'
 
+const PageDetails = () => {
 
-const PageDetails = ({data, loading, error}) => {
+  const {data, loading, error} = useData()
     
   const {id} = useParams()
-  const filteredData = data.filter((item) => item.id === Number(id))
+  const post = data.find((item) => item.id === Number(id))
 
   const Loading =()=> {
-    return <div className='loading'>Loading...</div>
+    return <p className='loading'>Loading...</p>
   }
   
   const ErrorPage=({error})=>{
-    return <div className='error'>{error}</div>
+    return <p className='error'>{error}</p>
   }
+
+  
     
 
   
@@ -22,10 +26,13 @@ const PageDetails = ({data, loading, error}) => {
       {loading && <Loading/>}
       {error && <ErrorPage error={error}/>}
       {data.length > 0 &&  
-      <div>
-        <h2>{filteredData[0].title}</h2>
-        <p>{filteredData[0].body}</p>
-      </div>}
+        <div>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+          <Link to='comments'>See comments</Link>
+          <Outlet/>
+        </div>
+      }
     </div>
   )
 }
