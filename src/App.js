@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext} from 'react';
+import { useState, useEffect, createContext} from 'react';
 import './pages/Home'
 import './App.css';
 import Home from './pages/Home';
@@ -8,14 +8,8 @@ import PageDetails from './pages/PageDetails';
 import { useNavigate } from 'react-router-dom'
 import Comments from './pages/Comments';
 
-
-//Set up global state for Auth
-
 export const DataContext = createContext()
 
-export const useData =()=> {
-  return useContext(DataContext)
-}
 
 
 

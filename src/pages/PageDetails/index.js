@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, Outlet, useParams } from 'react-router-dom'
-import { useData } from '../../App'
+import { DataContext } from '../../App'
 
 const PageDetails = () => {
 
-  const {data, loading, error} = useData()
+  const {data, loading, error} = useContext(DataContext)
     
   const {id} = useParams()
   const post = data.find((item) => item.id === Number(id))

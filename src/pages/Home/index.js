@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Home.css'
-import { useData } from '../../App'
+import { DataContext } from '../../App'
 
 
 const Home = () => {
 
-  const {data, loading, error, onNavigate} = useData()
+  const {data, loading, error, onNavigate} = useContext(DataContext)
 
   const handleClick=(id)=>{
     onNavigate(id)
