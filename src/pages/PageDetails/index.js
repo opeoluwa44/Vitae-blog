@@ -29,7 +29,7 @@ const PageDetails = () => {
         <div>
           <h2>{post.title}</h2>
           <p>{post.body}</p>
-          <Link to='comments'>See comments</Link>
+          <Link to='comments'>View comments</Link>
           <Outlet/>
         </div>
       }

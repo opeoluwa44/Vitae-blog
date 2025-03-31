@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext} from 'react';
+import { useState, useEffect, createContext, useCallback, useMemo} from 'react';
 import './pages/Home'
 import './App.css';
 import Home from './pages/Home';
@@ -7,18 +7,18 @@ import Header from './components/Navbar/Header';
 import PageDetails from './pages/PageDetails';
 import { useNavigate } from 'react-router-dom'
 import Comments from './pages/Comments';
+import ProtectedRoute from './pages/ProtectedRoute'
+import Admin from './pages/Admin'
 
 export const DataContext = createContext()
 
 
-
-
 function App() {
 
-  // const [isAdmin, setIsAdmin] = useState(false)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
 
 
   useEffect(() => {
@@ -36,8 +36,6 @@ function App() {
         setData(data)
         setError(null)
       })
-
-      
       .catch((error)=>{
         setError(error.message)
       })
@@ -51,23 +49,31 @@ function App() {
 
   const navigate = useNavigate()
 
-  const onNavigate=(id)=> {
-    navigate(`/${id}`)
-  }
+  const onNavigate= useCallback(
+    (id) => {
+      navigate(`/${id}`)
+    },
+    [navigate],
+  )
+  
 
-  const contextValue = {data, loading, error, onNavigate}
+  const contextValue = useMemo(() => ({data, loading, error, onNavigate}), [data, error, loading, onNavigate])
 
   return (
     <DataContext.Provider value={contextValue}>
-       <div className='App'>
+      <div className='App'>
       <Header/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/:id' element={<PageDetails data={data} error={error} loading={loading} />}>
           <Route path='comments' element={<Comments />}/>
         </Route>
+        <Route path='admin' element={
+        <ProtectedRoute>
+          <Admin/>
+        </ProtectedRoute>}/>
       </Routes>
-    </div>
+      </div>
     </DataContext.Provider>
    
   );
