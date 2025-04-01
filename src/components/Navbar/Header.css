@@ -42,7 +42,7 @@
 }
 
  .sub-title {
-    padding: 0 25px;
+    padding: 0 32px;
     font-size: 0.875rem;
     margin: 2px 0 0 0;
 }
@@ -57,29 +57,34 @@
     font-family: "Ubuntu", sans-serif;
     width: 100%;
     color: antiquewhite;
-    padding-inline: 25px;
+    padding-inline: 20px;
+    position: relative;
+    
+}
+
+.side-bar {
+    display: none;
 }
 
 
 .main-menu{
     display: none;
     line-height: 45px;
-    margin: 0 0 0 30px;
     text-align: left;
-    padding: 0 16px;
+    padding: 0;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
     color: #fff;
     background: transparent;
     border: 0;
+    cursor: pointer;
 }
 
 .link-list{
     display: flex;
     font-size: 0.875rem;
     font-weight: bold;
-    list-style: none;
     margin: 0;
     padding-left: 0;
     text-transform: uppercase;
@@ -100,4 +105,74 @@
     background-color: #E74C3C;
 }
 
+.search-button {
+    background: none;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-wrap {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 345px;
+    padding: 0 5px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    border-radius: 3px;
+    background: #E74C3C;
+    line-height: 1;
+    padding: 0 8px;
+    outline: 0;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px;
+    z-index: 999;
+    height: 43px;
+    font-weight: 500;    
+}
+
+.search-input{
+    height: 45px;
+    border: 3px solid #E3E3E3;
+    padding: 10px 85px 10px 10px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 0;
+    display: block;
+}
+
+
+@media screen and (max-width: 984px) {
+
+    .link-list {
+        display: none;
+    }
+
+    .side-bar {
+        margin-top: 0;
+        padding: 0 25px;
+        background-color: #404040;
+        
+    }
+
+    .main-menu {
+        display: block;
+        padding-inline: 15px;
+        transition: background-color 200ms ease-in-out;
+    }
+
+    .main-menu:hover{
+        background-color: #E74C3C;
+    }
+}
 

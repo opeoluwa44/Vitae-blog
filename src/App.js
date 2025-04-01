@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom'
 import Comments from './pages/Comments';
 import ProtectedRoute from './pages/ProtectedRoute'
 import Admin from './pages/Admin'
+import Privacy from './pages/Privacy'
+import Contact from './pages/Contact'
+import About from './pages/About'
 
 export const DataContext = createContext()
 
@@ -72,6 +75,9 @@ function App() {
         <ProtectedRoute>
           <Admin/>
         </ProtectedRoute>}/>
+        <Route path='privacy' element={<Privacy/>}/>
+        <Route path='contact' element={<Contact/>}/>
+        <Route path='about' element={<About/>}/>
       </Routes>
       </div>
     </DataContext.Provider>
