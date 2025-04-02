@@ -7,6 +7,8 @@ const Home = () => {
 
   const {data, loading, error, onNavigate} = useContext(DataContext)
 
+  const date = new Date().toLocaleDateString()
+
   const handleClick=(id)=>{
     onNavigate(id)
   }
@@ -27,9 +29,12 @@ const ErrorPage=({error})=>{
       {error && <ErrorPage error={error}/>}
       <div className='posts-grid-container'>
         {data.map((post)=>(
-          <div key={post.id} className='post' onClick={()=>handleClick(post.id)}>
-            <h2>{post.title}</h2>
+          <div key={post.id} className='post'>
+            <p className='update'>update</p>
+            <h2 onClick={()=>handleClick(post.id)} className='post-title'>{post.title}</h2>
+            <p className='blur-text'>{date} - by opeSm - <span>Leave a Comment</span></p>
             <p>{post.body}</p>
+            <button className='read-more' onClick={()=>handleClick(post.id)}>Read more</button>
           </div>
         ))}
       </div>
