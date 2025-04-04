@@ -1,5 +1,6 @@
 .home {
     display: grid;
+    margin-top: 3rem;
 }
 
 .posts-grid-container {
@@ -64,6 +65,13 @@
 .blur-text span:hover {
     color: #E74C3C;
 }
+
+.body-text {
+    line-height: 1.5;
+    margin: 1.5em 0;
+    color: #555;
+}
+
 .read-more {
     display: inline-block;
     border-radius: 3px;
@@ -78,9 +86,37 @@
     height: 35px;
     border: 0;
     outline: 0;
-    margin-top: 20px;
 }
 
 .read-more:hover {
     background: #000;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 5px;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    padding: 5px 10px;
+  }
